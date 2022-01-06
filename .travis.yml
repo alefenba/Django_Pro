@@ -22,7 +22,7 @@ before_script:
   - sudo systemctl restart postgresql
   - psql -c "CREATE DATABASE testdb;" -U postgres
 script:
-  - pipenv run flake 8.
+  - pipenv run flake8 .
   - pipenv run pytest --cov=webdev --nomigrations
 #Command to run tests
 after_success:
