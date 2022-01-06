@@ -1,0 +1,21 @@
+language: python
+dist: xenial
+sudo: true
+python:
+  - 3.9
+
+env:
+  global:
+  - PIPENV_NO_INHERIT: 1
+  - PIPENV_IGNORE_VIRTUALENVS: 1
+
+install: 
+  - pip install pipenv
+  - pipenv sync --dev
+script:
+pipenv run flake 8.
+  - pipenv run pytest --cov=webdev --nomigrations
+#Command to run tests
+after_success:
+  - pipenv run codecov
+  
