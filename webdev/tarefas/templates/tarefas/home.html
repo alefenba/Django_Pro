@@ -37,15 +37,28 @@
 
                 <h2 class="mt-5">Tarefas já concluidas</h2>
                 {% for tarefa in tarefas_feitas %}
-                <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">
-                    {% csrf_token %}
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Descreva sua tarefa" required="required" aria-label="Descreva sua tarefa"  name="nome" value="{{tarefa.nome}}">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-warning"  id="button-addon2">Marcar como Pendente</button>   
-                        </div>
-                    </div> 
-                </form>
+                <div class="row">
+                <div class="col-2">
+                    <form action="{% url 'tarefas:apagar' tarefa_id=tarefa.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-danger"  id="button-addon2">Apagar</button>   
+                            </div>
+                        </div> 
+                    </form>
+                </div>
+                <div class="col-10">
+                    <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Descreva sua tarefa" required="required" aria-label="Descreva sua tarefa"  name="nome" value="{{tarefa.nome}}">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-warning"  id="button-addon2">Marcar como Pendente</button>   
+                            </div>
+                        </div> 
+                    </form>
+                </div>
                 {% endfor %}
             </div>
         </div>
